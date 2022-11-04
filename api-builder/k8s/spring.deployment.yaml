@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot
+  namespace: devops-test
+spec:
+  selector:
+    matchLabels:
+      app: spring-boot
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: spring-boot
+    spec:
+      containers:
+      - image: arslansb/spring-swagger:latest
+        name: spring-boot
+        ports:
+        - containerPort: 8080
+          name: spring-boot
